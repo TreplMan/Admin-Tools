@@ -209,7 +209,7 @@ function imgui.BeforeDrawFrame()
             fontsize10 = imgui.GetIO().Fonts:AddFontFromFileTTF(getFolderPath(0x14) .. '\\trebucbd.ttf', 10.0, nil, imgui.GetIO().Fonts:GetGlyphRangesCyrillic())
             fontsize15 = imgui.GetIO().Fonts:AddFontFromFileTTF(getFolderPath(0x14) .. '\\trebucbd.ttf', 15.0, nil, imgui.GetIO().Fonts:GetGlyphRangesCyrillic())
             fontsize20 = imgui.GetIO().Fonts:AddFontFromFileTTF(getFolderPath(0x14) .. '\\trebucbd.ttf', 20.0, nil, imgui.GetIO().Fonts:GetGlyphRangesCyrillic())
-            fontsize30 = imgui.GetIO().Fonts:AddFontFromFileTTF(getFolderPath(0x14) .. '\\trebucbd.ttf', 30.0, nil, imgui.GetIO().Fonts:GetGlyphRangesCyrillic()) -- вместо 30 любой нужный размер
+            fontsize30 = imgui.GetIO().Fonts:AddFontFromFileTTF(getFolderPath(0x14) .. '\\trebucbd.ttf', 30.0, nil, imgui.GetIO().Fonts:GetGlyphRangesCyrillic()) -- ГўГ¬ГҐГ±ГІГ® 30 Г«ГѕГЎГ®Г© Г­ГіГ¦Г­Г»Г© Г°Г Г§Г¬ГҐГ°
             fontsize50 = imgui.GetIO().Fonts:AddFontFromFileTTF(getFolderPath(0x14) .. '\\trebucbd.ttf', 50.0, nil, imgui.GetIO().Fonts:GetGlyphRangesCyrillic())
         end
     end
@@ -219,25 +219,25 @@ end
 local version_int = 1
 local update_url = "https://raw.githubusercontent.com/TreplMan/SampScripts/main/update.ini"
 local update_path = getWorkingDirectory().."/update.ini"
-local script_url = "" --ссылка на обновленный файл
+local script_url = "https://raw.githubusercontent.com/TreplMan/Admin-Tools/main/!ATools.lua" --Г±Г±Г»Г«ГЄГ  Г­Г  Г®ГЎГ­Г®ГўГ«ГҐГ­Г­Г»Г© ГґГ Г©Г«
 local script_path = thisScript().path
 local update = false
 local start_update = false
 
 function main()
     while not isSampAvailable() do wait(200) end
-    sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Скрипт был инициализирован. (by Mason_Baker)', stColor)
-	sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Активация скрипта - /rh', stColor)
-    --Проверка наличия обновления
+    sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Г‘ГЄГ°ГЁГЇГІ ГЎГ»Г« ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°Г®ГўГ Г­. (by Mason_Baker)', stColor)
+	sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЂГЄГІГЁГўГ Г¶ГЁГї Г±ГЄГ°ГЁГЇГІГ  - /rh', stColor)
+    --ГЏГ°Г®ГўГҐГ°ГЄГ  Г­Г Г«ГЁГ·ГЁГї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї
     downloadUrlToFile(update_url, update_path, function(id, status)
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             updateIni = inicfg.load(nil, update_path)
             if updateIni ~= nil then
                 if updateIni.info.version > version_int then
-                    sampAddChatMessage("{FF0000}[AdminTools] {FF8C00}Есть обновление! Версия: "..updateIni.info.version, -1)
+                    sampAddChatMessage("{FF0000}[AdminTools] {FF8C00}Г…Г±ГІГј Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ! Г‚ГҐГ°Г±ГЁГї: "..updateIni.info.version, -1)
                     update = true
                 elseif updateIni.info.version == version_int then
-                    sampAddChatMessage("{FF0000}[AdminTools] {FF8C00}У вас стоит актуальная версия: "..updateIni.info.version, -1)
+                    sampAddChatMessage("{FF0000}[AdminTools] {FF8C00}Г“ ГўГ Г± Г±ГІГ®ГЁГІ Г ГЄГІГіГ Г«ГјГ­Г Гї ГўГҐГ°Г±ГЁГї: "..updateIni.info.version, -1)
                 end
             end
             os.remove(update_path)
@@ -262,7 +262,7 @@ function main()
 			if elements.checkbox.alock.v then
             	sampSendChat("/alock")
 			else
-				sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Купи команду в /adm. Если купил, поставь чек-бокс', stColor)
+				sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГіГЇГЁ ГЄГ®Г¬Г Г­Г¤Гі Гў /adm. Г…Г±Г«ГЁ ГЄГіГЇГЁГ«, ГЇГ®Г±ГІГ ГўГј Г·ГҐГЄ-ГЎГ®ГЄГ±', stColor)
 			end
         end
     end)
@@ -337,10 +337,10 @@ function imgui.OnDrawFrame()
         end imgui.SameLine()
         if imgui.Button(fa.ICON_FA_DOWNLOAD, imgui.ImVec2(25, 25)) then
             if update then
-                sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Обновляюсь', stColor)
+                sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЋГЎГ­Г®ГўГ«ГїГѕГ±Гј', stColor)
                 start_update = true
             else
-                sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Обновлений нет.', stColor)
+                sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГ© Г­ГҐГІ.', stColor)
             end
         end imgui.SameLine()
         if imgui.Button(fa.ICON_FA_SYNC, imgui.ImVec2(25, 25)) then
@@ -350,42 +350,42 @@ function imgui.OnDrawFrame()
 
         end imgui.Separator()
         imgui.PushFont(fontsize20)
-        imgui.centeredText(u8"Главное меню")
+        imgui.centeredText(u8"ГѓГ«Г ГўГ­Г®ГҐ Г¬ГҐГ­Гѕ")
         imgui.PopFont()
-        if imgui.InvButton(fa.ICON_FA_USER..u8" Профиль", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_USER..u8" ГЏГ°Г®ГґГЁГ«Гј", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 1
         end
-        if imgui.InvButton(fa.ICON_FA_COG..u8" Настройки", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_COG..u8" ГЌГ Г±ГІГ°Г®Г©ГЄГЁ", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 2
         end
-        if imgui.InvButton(fa.ICON_FA_CHART_LINE..u8" Статистика", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_CHART_LINE..u8" Г‘ГІГ ГІГЁГ±ГІГЁГЄГ ", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 3
         end
-        if imgui.InvButton(fa.ICON_FA_CHECK_SQUARE..u8" Формы", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_CHECK_SQUARE..u8" Г”Г®Г°Г¬Г»", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 4
         end
-        if imgui.InvButton(fa.ICON_FA_REPLY..u8" Окно Жалоб", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_REPLY..u8" ГЋГЄГ­Г® Г†Г Г«Г®ГЎ", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 5
         end
-        if imgui.InvButton(fa.ICON_FA_PLANE..u8" Меню Телепортов", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_PLANE..u8" ГЊГҐГ­Гѕ Г’ГҐГ«ГҐГЇГ®Г°ГІГ®Гў", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 6
         end
-        if imgui.InvButton(fa.ICON_FA_TH_LIST..u8" Таблица наказаний", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_TH_LIST..u8" Г’Г ГЎГ«ГЁГ¶Г  Г­Г ГЄГ Г§Г Г­ГЁГ©", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 7
         end
-        if imgui.InvButton(fa.ICON_FA_LIST..u8" Админ-Команды", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_LIST..u8" ГЂГ¤Г¬ГЁГ­-ГЉГ®Г¬Г Г­Г¤Г»", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 8
         end
-        if imgui.InvButton(fa.ICON_FA_PLUS..u8" Админ-Плюшки", imgui.ImVec2(150, 0)) then
-            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}Красава', stColor)
+        if imgui.InvButton(fa.ICON_FA_PLUS..u8" ГЂГ¤Г¬ГЁГ­-ГЏГ«ГѕГёГЄГЁ", imgui.ImVec2(150, 0)) then
+            sampAddChatMessage('{FF0000}[AdminTools] {FF8C00}ГЉГ°Г Г±Г ГўГ ', stColor)
             menuSelect = 8
         end
         imgui.EndChild()
@@ -393,17 +393,17 @@ function imgui.OnDrawFrame()
         imgui.BeginChild('##selectebl', imgui.ImVec2(596, 520), true)
         if menuSelect == 1 then
             imgui.PushFont(fontsize20)
-            imgui.centeredText(u8"Профиль")
+            imgui.centeredText(u8"ГЏГ°Г®ГґГЁГ«Гј")
             imgui.PopFont()
             if HLcfg.admSetting.admNick == "" or HLcfg.admSetting.admlvl == 0 then
                 imgui.SetCursorPosY(150)
                 imgui.SetCursorPosX(100)
                 imgui.BeginChild('##register', imgui.ImVec2(380, 120), true)
                 imgui.PushItemWidth(200)
-                imgui.Text(u8"Введите ваш Ник =>> ") imgui.SameLine() imgui.InputText('##nickadm', elements.input.admNick)
+                imgui.Text(u8"Г‚ГўГҐГ¤ГЁГІГҐ ГўГ Гё ГЌГЁГЄ =>> ") imgui.SameLine() imgui.InputText('##nickadm', elements.input.admNick)
                 imgui.PushItemWidth(50)
-                imgui.Text(u8"Введите ваш Уровень Администратора =>> ") imgui.SameLine() imgui.InputText('##lvladm', elements.input.admlvl)
-                if imgui.Button(u8'Сохранить', imgui.ImVec2(100, 0)) then
+                imgui.Text(u8"Г‚ГўГҐГ¤ГЁГІГҐ ГўГ Гё Г“Г°Г®ГўГҐГ­Гј ГЂГ¤Г¬ГЁГ­ГЁГ±ГІГ°Г ГІГ®Г°Г  =>> ") imgui.SameLine() imgui.InputText('##lvladm', elements.input.admlvl)
+                if imgui.Button(u8'Г‘Г®ГµГ°Г Г­ГЁГІГј', imgui.ImVec2(100, 0)) then
                     HLcfg.admSetting.admNick = elements.input.admNick.v
                     HLcfg.admSetting.admlvl = elements.input.admlvl.v
                     save()
@@ -411,52 +411,52 @@ function imgui.OnDrawFrame()
                 imgui.EndChild()
             else
                 imgui.PushFont(fontsize15)
-                imgui.Text(u8"Здраствуйте "..HLcfg.admSetting.admNick..u8". Уровень администратора - "..HLcfg.admSetting.admlvl)
+                imgui.Text(u8"Г‡Г¤Г°Г Г±ГІГўГіГ©ГІГҐ "..HLcfg.admSetting.admNick..u8". Г“Г°Г®ГўГҐГ­Гј Г Г¤Г¬ГЁГ­ГЁГ±ГІГ°Г ГІГ®Г°Г  - "..HLcfg.admSetting.admlvl)
                 imgui.PopFont()
             end
             
 
             imgui.SetCursorPosY(415)
             imgui.BeginChild('##apass', imgui.ImVec2(278, 100), true)
-            if imgui.Checkbox(u8"[Вкл/выкл] Авто-вход как ADM", elements.checkbox.autoCome) then
+            if imgui.Checkbox(u8"[Г‚ГЄГ«/ГўГ»ГЄГ«] ГЂГўГІГ®-ГўГµГ®Г¤ ГЄГ ГЄ ADM", elements.checkbox.autoCome) then
                 HLcfg.admSetting.autoCome = elements.checkbox.autoCome.v
                 save()
-            end imgui.SameLine() imgui.HelpMarker(u8"Не надо вводить админ-пароль самому, скрипт сделает это за вас")
+            end imgui.SameLine() imgui.HelpMarker(u8"ГЌГҐ Г­Г Г¤Г® ГўГўГ®Г¤ГЁГІГј Г Г¤Г¬ГЁГ­-ГЇГ Г°Г®Г«Гј Г±Г Г¬Г®Г¬Гі, Г±ГЄГ°ГЁГЇГІ Г±Г¤ГҐГ«Г ГҐГІ ГЅГІГ® Г§Г  ГўГ Г±")
             if elements.checkbox.autoCome.v then
-                imgui.Text(u8"Введите админ-пароль: ")  imgui.PushItemWidth(100)
+                imgui.Text(u8"Г‚ГўГҐГ¤ГЁГІГҐ Г Г¤Г¬ГЁГ­-ГЇГ Г°Г®Г«Гј: ")  imgui.PushItemWidth(100)
                 if imgui.InputText("##adminPassword", elements.input.adminPassword, (elements.checkbox.showAdminPassword.v and imgui.InputTextFlags.Password or nil)) then
                     HLcfg.admSetting.adminPassword = elements.input.adminPassword.v
                     save()
-                end imgui.PopItemWidth() imgui.SameLine() if imgui.ToggleButton('Админ Пароль', elements.checkbox.showAdminPassword) then
+                end imgui.PopItemWidth() imgui.SameLine() if imgui.ToggleButton('ГЂГ¤Г¬ГЁГ­ ГЏГ Г°Г®Г«Гј', elements.checkbox.showAdminPassword) then
                     HLcfg.admSetting.showAdminPassword = elements.checkbox.showAdminPassword.v
                     save()
-                end imgui.SameLine() imgui.HelpMarker(u8"Настройка, которая будет показывать, отобразиться ваш админ-пароль, или нет")
+                end imgui.SameLine() imgui.HelpMarker(u8"ГЌГ Г±ГІГ°Г®Г©ГЄГ , ГЄГ®ГІГ®Г°Г Гї ГЎГіГ¤ГҐГІ ГЇГ®ГЄГ Г§Г»ГўГ ГІГј, Г®ГІГ®ГЎГ°Г Г§ГЁГІГјГ±Гї ГўГ Гё Г Г¤Г¬ГЁГ­-ГЇГ Г°Г®Г«Гј, ГЁГ«ГЁ Г­ГҐГІ")
             end
             imgui.EndChild()
             imgui.SameLine()
             imgui.BeginChild('##pass', imgui.ImVec2(278, 100), true)
-            if imgui.Checkbox(u8"[Вкл/выкл] Авто-вход в аккаунт", elements.checkbox.autoCome2) then
+            if imgui.Checkbox(u8"[Г‚ГЄГ«/ГўГ»ГЄГ«] ГЂГўГІГ®-ГўГµГ®Г¤ Гў Г ГЄГЄГ ГіГ­ГІ", elements.checkbox.autoCome2) then
                 HLcfg.admSetting.autoCome2 = elements.checkbox.autoCome2.v
                 save()
-            end imgui.SameLine() imgui.HelpMarker(u8"Не надо вводить пароль самому, скрипт сделает это за вас")
+            end imgui.SameLine() imgui.HelpMarker(u8"ГЌГҐ Г­Г Г¤Г® ГўГўГ®Г¤ГЁГІГј ГЇГ Г°Г®Г«Гј Г±Г Г¬Г®Г¬Гі, Г±ГЄГ°ГЁГЇГІ Г±Г¤ГҐГ«Г ГҐГІ ГЅГІГ® Г§Г  ГўГ Г±")
             if elements.checkbox.autoCome2.v then
-                imgui.Text(u8"Введите пароль: ") imgui.PushItemWidth(100)
+                imgui.Text(u8"Г‚ГўГҐГ¤ГЁГІГҐ ГЇГ Г°Г®Г«Гј: ") imgui.PushItemWidth(100)
                 if imgui.InputText("##Password", elements.input.Password, (elements.checkbox.showPassword.v and imgui.InputTextFlags.Password or nil)) then
                     HLcfg.admSetting.Password = elements.input.Password.v
                     save()
-                end imgui.PopItemWidth() imgui.SameLine() if imgui.ToggleButton('Пароль', elements.checkbox.showPassword) then
+                end imgui.PopItemWidth() imgui.SameLine() if imgui.ToggleButton('ГЏГ Г°Г®Г«Гј', elements.checkbox.showPassword) then
                     HLcfg.admSetting.showPassword = elements.checkbox.showPassword.v
                     save()
-                end imgui.SameLine() imgui.HelpMarker(u8"Настройка, которая будет показывать, отобразиться ваш пароль, или нет")
+                end imgui.SameLine() imgui.HelpMarker(u8"ГЌГ Г±ГІГ°Г®Г©ГЄГ , ГЄГ®ГІГ®Г°Г Гї ГЎГіГ¤ГҐГІ ГЇГ®ГЄГ Г§Г»ГўГ ГІГј, Г®ГІГ®ГЎГ°Г Г§ГЁГІГјГ±Гї ГўГ Гё ГЇГ Г°Г®Г«Гј, ГЁГ«ГЁ Г­ГҐГІ")
             end
             imgui.EndChild()
         end
         if menuSelect == 2 then
             imgui.PushFont(fontsize20)
-            imgui.Text(u8"Основные настройки")
+            imgui.Text(u8"ГЋГ±Г­Г®ГўГ­Г»ГҐ Г­Г Г±ГІГ°Г®Г©ГЄГЁ")
             imgui.SameLine()
             imgui.SetCursorPosX(305)
-            imgui.Text(u8"Горячие клавишы")
+            imgui.Text(u8"ГѓГ®Г°ГїГ·ГЁГҐ ГЄГ«Г ГўГЁГёГ»")
             imgui.PopFont()
             imgui.BeginChild('##select1', imgui.ImVec2(278, 470), true)
             
@@ -467,70 +467,70 @@ function imgui.OnDrawFrame()
                 rkeys.changeHotKey(BindLeaveReconWindow, ofHotkeys.LeaveReconWindow.v)
                 cfg.LeaveReconWindow = deepcopy(ofHotkeys.LeaveReconWindow.v)
                 luasave()
-            end imgui.SameLine() imgui.Text(u8"Выйти из рекона")
+            end imgui.SameLine() imgui.Text(u8"Г‚Г»Г©ГІГЁ ГЁГ§ Г°ГҐГЄГ®Г­Г ")
             local tLastThree = {}
             if imguiad.HotKey("##ActiveThree", ofHotkeys.openHomeWindow, tLastThree, 100) then
                 rkeys.changeHotKey(BindopenHomeWindow, ofHotkeys.openHomeWindow.v)
                 cfg.openHomeWindow = deepcopy(ofHotkeys.openHomeWindow.v)
                 luasave()
-            end  imgui.SameLine() imgui.Text(u8'Открыть основное окно')
+            end  imgui.SameLine() imgui.Text(u8'ГЋГІГЄГ°Г»ГІГј Г®Г±Г­Г®ГўГ­Г®ГҐ Г®ГЄГ­Г®')
             local tLastFour = {}
             if imguiad.HotKey("##ActiveFour", ofHotkeys.openAutoReport, tLastFour, 100) then
                 rkeys.changeHotKey(BindopenAutoReport, ofHotkeys.openAutoReport.v)
                 cfg.openAutoReport = deepcopy(ofHotkeys.openAutoReport.v)
                 luasave()
-            end imgui.SameLine() imgui.Text(u8'Открыть авто-репорт')
+            end imgui.SameLine() imgui.Text(u8'ГЋГІГЄГ°Г»ГІГј Г ГўГІГ®-Г°ГҐГЇГ®Г°ГІ')
             local tLastFive = {}
             if imguiad.HotKey("##ActiveFive", ofHotkeys.enabledTracers, tLastFive, 100) then
                 rkeys.changeHotKey(BindenabledTracers, ofHotkeys.enabledTracers.v)
                 cfg.enabledTracers = deepcopy(ofHotkeys.enabledTracers.v)
                 luasave()
-            end imgui.SameLine() imgui.Text(u8'Вкл/выкл трейсеры')
+            end imgui.SameLine() imgui.Text(u8'Г‚ГЄГ«/ГўГ»ГЄГ« ГІГ°ГҐГ©Г±ГҐГ°Г»')
             if imguiad.HotKey("##ActiveSix", ofHotkeys.Alock, tLastOne, 100) then
                 rkeys.changeHotKey(BindAlock, ofHotkeys.Alock.v)
                 cfg.Alock = deepcopy(ofHotkeys.Alock.v)
                 luasave()
-            end imgui.SameLine() imgui.Text(u8"Открытие любого авто")
+            end imgui.SameLine() imgui.Text(u8"ГЋГІГЄГ°Г»ГІГЁГҐ Г«ГѕГЎГ®ГЈГ® Г ГўГІГ®")
             if imguiad.HotKey("##ActiveSeven", ofHotkeys.DelVeh, tLastOne, 100) then
                 rkeys.changeHotKey(BindDelVeh, ofHotkeys.DelVeh.v)
                 cfg.DelVeh = deepcopy(ofHotkeys.DelVeh.v)
                 luasave()
-            end imgui.SameLine() imgui.Text(u8"Удаление Т/С")
+            end imgui.SameLine() imgui.Text(u8"Г“Г¤Г Г«ГҐГ­ГЁГҐ Г’/Г‘")
             imgui.EndChild()
         end
         if menuSelect == 3 then
             imgui.PushFont(fontsize20)
-            imgui.centeredText(u8"Статистика")
+            imgui.centeredText(u8"Г‘ГІГ ГІГЁГ±ГІГЁГЄГ ")
             imgui.PopFont()
-            imgui.Text(u8'Наказания за все время.') imgui.SameLine() imgui.SetCursorPosX(265) imgui.Text(u8'Статистика за день за день')
+            imgui.Text(u8'ГЌГ ГЄГ Г§Г Г­ГЁГї Г§Г  ГўГ±ГҐ ГўГ°ГҐГ¬Гї.') imgui.SameLine() imgui.SetCursorPosX(265) imgui.Text(u8'Г‘ГІГ ГІГЁГ±ГІГЁГЄГ  Г§Г  Г¤ГҐГ­Гј Г§Г  Г¤ГҐГ­Гј')
             imgui.BeginChild('##nakaz', imgui.ImVec2(240, 280), true)
-                imgui.Text(u8'Количество /ban: '..HLcfg.Count.ban)
-                imgui.Text(u8'Количество /iban: '..HLcfg.Count.iban)
-                imgui.Text(u8'Количество /warn: '..HLcfg.Count.warn)
-                imgui.Text(u8'Количество /offwarn: '..HLcfg.Count.offwarn)
-                imgui.Text(u8'Количество /mute: '..HLcfg.Count.mute)
-                imgui.Text(u8'Количество /rmute: '..HLcfg.Count.rmute)
-                imgui.Text(u8'Количество /prison: '..HLcfg.Count.prison)
-                imgui.Text(u8'Количество /kick: '..HLcfg.Count.kick)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® /ban: '..HLcfg.Count.ban)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® /iban: '..HLcfg.Count.iban)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® /warn: '..HLcfg.Count.warn)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® /offwarn: '..HLcfg.Count.offwarn)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® /mute: '..HLcfg.Count.mute)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® /rmute: '..HLcfg.Count.rmute)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® /prison: '..HLcfg.Count.prison)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® /kick: '..HLcfg.Count.kick)
                 imgui.Separator()
-                imgui.Text(u8'Количество принятых формы: '..HLcfg.Count.forms)
-                imgui.Text(u8'Количество принятых жалоб: '..HLcfg.Count.reports)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГ°ГЁГ­ГїГІГ»Гµ ГґГ®Г°Г¬Г»: '..HLcfg.Count.forms)
+                imgui.Text(u8'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГ°ГЁГ­ГїГІГ»Гµ Г¦Г Г«Г®ГЎ: '..HLcfg.Count.reports)
             imgui.EndChild()
             imgui.SameLine()
             imgui.BeginChild('##alltday', imgui.ImVec2(240, 200), true)
-                imgui.centeredText(u8'Форм за день: '..HLcfg.config.dayForms)
-                imgui.centeredText(u8'Форм за сеанс: '..LsessionForma)
-                imgui.centeredText(u8'Репортов за день: '..HLcfg.config.dayReports)
-                imgui.centeredText(u8'Репортов за сеанс: '..LsessionReport) 
-                imgui.centeredText(u8'Онлайн за сеанс: '..get_clock(sessionOnline.v))
-                imgui.centeredText(u8'Онлайн за день: '..get_clock(HLcfg.onDay.online)) 
-                imgui.centeredText(u8'АФК за сеанс: '..get_clock(sessionAfk.v)) 
-                imgui.centeredText(u8'АФК за день: '..get_clock(HLcfg.onDay.afk))
+                imgui.centeredText(u8'Г”Г®Г°Г¬ Г§Г  Г¤ГҐГ­Гј: '..HLcfg.config.dayForms)
+                imgui.centeredText(u8'Г”Г®Г°Г¬ Г§Г  Г±ГҐГ Г­Г±: '..LsessionForma)
+                imgui.centeredText(u8'ГђГҐГЇГ®Г°ГІГ®Гў Г§Г  Г¤ГҐГ­Гј: '..HLcfg.config.dayReports)
+                imgui.centeredText(u8'ГђГҐГЇГ®Г°ГІГ®Гў Г§Г  Г±ГҐГ Г­Г±: '..LsessionReport) 
+                imgui.centeredText(u8'ГЋГ­Г«Г Г©Г­ Г§Г  Г±ГҐГ Г­Г±: '..get_clock(sessionOnline.v))
+                imgui.centeredText(u8'ГЋГ­Г«Г Г©Г­ Г§Г  Г¤ГҐГ­Гј: '..get_clock(HLcfg.onDay.online)) 
+                imgui.centeredText(u8'ГЂГ”ГЉ Г§Г  Г±ГҐГ Г­Г±: '..get_clock(sessionAfk.v)) 
+                imgui.centeredText(u8'ГЂГ”ГЉ Г§Г  Г¤ГҐГ­Гј: '..get_clock(HLcfg.onDay.afk))
             imgui.EndChild()
-            imgui.Text(u8'Онлайн за все время.')
+            imgui.Text(u8'ГЋГ­Г«Г Г©Г­ Г§Г  ГўГ±ГҐ ГўГ°ГҐГ¬Гї.')
             imgui.BeginChild('##alltime', imgui.ImVec2(240, 100), true)
-                imgui.Text(u8'Онлайн за все время: '..get_clock(HLcfg.Count.Online))
-                imgui.Text(u8'AFK за все время: '..get_clock(HLcfg.Count.AFK))
+                imgui.Text(u8'ГЋГ­Г«Г Г©Г­ Г§Г  ГўГ±ГҐ ГўГ°ГҐГ¬Гї: '..get_clock(HLcfg.Count.Online))
+                imgui.Text(u8'AFK Г§Г  ГўГ±ГҐ ГўГ°ГҐГ¬Гї: '..get_clock(HLcfg.Count.AFK))
             imgui.EndChild()
         end
         imgui.EndChild()
